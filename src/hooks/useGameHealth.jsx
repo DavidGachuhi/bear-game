@@ -1,4 +1,3 @@
-// src/hooks/useGameHealth.js
 import { useState } from 'react';
 
 function useGameHealth() {

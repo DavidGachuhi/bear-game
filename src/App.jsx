@@ -1,6 +1,4 @@
-// 1. ADD THIS IMPORT - your custom hook
 import useGameHealth from "./hooks/useGameHealth";
-
 import Welcome from "./components/Welcome";
 import { useState } from "react";
 import { gamemode } from "./data/gamedata";
@@ -9,8 +7,6 @@ import Level2 from "./components/Level2";
 
 function App() {
   const [screen, setScreen] = useState(gamemode[0]);
-  
-  // 2. ADD THIS LINE - using your custom hook
   const gameHealth = useGameHealth();
   
   return (
@@ -23,7 +19,7 @@ function App() {
         <strong>❤️ Hearts: {gameHealth.hearts}</strong> | 
       </div>
       
-      {/* 4. ADD GAME OVER CHECK */}
+      {/* to be reviewed:GAME OVER CHECK */}
       {gameHealth.hearts === 0 && (
         <div style={{
           background: "red",
@@ -41,12 +37,11 @@ function App() {
         </div>
       )}
       
-      {/* 5. Pass gameHealth to your levels */}
+      {/* 5. Pass gameHealth to levels */}
       {screen === gamemode[0] && (
         <Welcome advance={() => {
           gameHealth.resetGame(); // Reset when starting
           setScreen(gamemode[1]);
-          Health={gameHealth}
         }} />
       )}
         
@@ -60,7 +55,7 @@ function App() {
       {screen === gamemode[2] && gameHealth.hearts > 0 && (
         <Level2 
           advance={() => setScreen(gamemode[3])}
-          gameHealth={gameHealth} // ← Pass hook to Level2
+          gameHealth={gameHealth} // ← Pass modified hook data to Level2 from level1
         />
       )}
             
